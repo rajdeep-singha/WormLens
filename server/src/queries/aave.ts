@@ -213,7 +213,23 @@ export async function getAaveReservesForChain(
   try {
     console.log(`🌐 Fetching all Aave reserves for ${chain}...`);
 
+    // Check if RPC provider is configured BEFORE attempting to fetch
+    const wormhole = getWormholeClient();
+    if (!wormhole.isChainSupported(chain)) {
+      const rpcEnvVar = chain === Chain.ETHEREUM ? 'ETHEREUM_RPC_URL' : `${chain}_RPC_URL`;
+      throw new LendingAnalyticsError(
+        `RPC provider not configured for ${chain}. Please set ${rpcEnvVar} environment variable.`,
+        ErrorCode.INVALID_CHAIN,
+        400
+      );
+    }
+
     const assets = getProtocolAssets(Protocol.AAVE, chain);
+    if (assets.length === 0) {
+      console.warn(`⚠️  No assets configured for Aave on ${chain}`);
+      return new Map();
+    }
+
     const reservesMap = new Map<string, AaveReserveData>();
 
     // Fetch reserve data for each asset in parallel
@@ -234,6 +250,15 @@ export async function getAaveReservesForChain(
       if (result) {
         reservesMap.set(result.symbol, result.data);
       }
+    }
+
+    // If we got zero results and we have assets configured, that's an error
+    if (reservesMap.size === 0 && assets.length > 0) {
+      throw new LendingAnalyticsError(
+        `Failed to fetch any Aave reserves for ${chain}. All ${assets.length} asset queries failed. Check RPC configuration and network connectivity.`,
+        ErrorCode.QUERY_FAILED,
+        500
+      );
     }
 
     console.log(`✓ Fetched ${reservesMap.size}/${assets.length} Aave reserves for ${chain}`);
