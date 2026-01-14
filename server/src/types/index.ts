@@ -3,6 +3,8 @@ export enum Chain{
     SOLANA = "solana",
     polygon = "polygon",
     Arbitrum = "arbitrum",
+    POLYGON = "POLYGON",
+    ARBITRUM = "ARBITRUM",
 }
 
 export enum Protocol {
@@ -10,7 +12,7 @@ export enum Protocol {
   SOLEND = 'solend',
   COMPOUND = 'compound',
 }
-// Asset types
+// Asset types 
 
 export interface Asset {
     symbol: string;
@@ -23,6 +25,7 @@ export interface Asset {
 // Lending Rate Types
 export interface LendingRate {
   asset : Asset;
+  chain: Chain;
   protocol: Protocol;
   supplyAPY: number;
   borrowAPY: number;
@@ -34,6 +37,8 @@ export interface LendingRate {
   totalSupplyUSD:number;
   totalBurrowUSD:number;
   timestamp:number;
+  totalBorrowUSD:number;
+  
 }
 // Liquidity  Types
 export interface Liquidity{
@@ -79,6 +84,7 @@ export interface UserPositions {
   netAPY: number; // Weighted average APY
   healthFactor?: number; // Overall account health
   timestamp: number;
+  
 }
 
 // Wormhole Query Types
