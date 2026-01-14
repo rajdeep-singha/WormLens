@@ -1,12 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express , {Express, Request, Response,NextFunction} from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
+
 // import { lendingRoutes } from './routes/lending.routes';
 import { LendingAnalyticsError, ApiResponse } from './types';
 import { lendingRoutes } from './routes/lending.routes';
 
-dotenv.config();
 
 const app: Express = express();
 const PORT = process.env.PORT || 3001;
