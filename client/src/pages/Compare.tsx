@@ -1,8 +1,8 @@
- // src/pages/Compare.tsx
+// src/pages/Compare.tsx
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, TrendingUp, TrendingDown, Zap } from 'lucide-react';
+import { Search, TrendingUp, TrendingDown } from 'lucide-react';
 import { useRateComparison } from '@hooks/useMarketData';
 import { Card } from '@components/ui/Card';
 import { GradientText } from '@components/ui/GradientText';
@@ -11,6 +11,8 @@ import { LoadingSpinner, EmptyState, Skeleton } from '@components/ui/GradientTex
 import { AssetSelector } from '@components/comparison/AssetSelector';
 import { RateComparisonCard } from '@components/comparison/RateComparisonCard';
 import { OpportunityHighlight } from '@components/comparison/OpportunityHighlight';
+import { ChainBadge, ProtocolBadge } from '@components/ui/Badge';
+import { formatCompactUSD } from '@utils/formatters';
 import { Chain, Protocol } from '@types';
 
 const POPULAR_ASSETS = ['USDC', 'ETH', 'USDT', 'DAI', 'WBTC', 'SOL'];
@@ -45,7 +47,7 @@ export default function Compare() {
       rate: data.bestSupply,
       savingsPercent: data.comparison.length > 1
         ? ((data.bestSupply.supplyAPY - data.comparison[data.comparison.length - 1].supplyAPY) / 
-           data.comparison[data.comparison.length - 1].supplyAPY * 100)
+           Math.max(data.comparison[data.comparison.length - 1].supplyAPY, 0.01) * 100)
         : 0,
     },
     {
@@ -54,10 +56,13 @@ export default function Compare() {
       rate: data.bestBorrow,
       savingsPercent: data.comparison.length > 1
         ? ((data.comparison[data.comparison.length - 1].borrowAPY - data.bestBorrow.borrowAPY) / 
-           data.comparison[data.comparison.length - 1].borrowAPY * 100)
+           Math.max(data.comparison[data.comparison.length - 1].borrowAPY, 0.01) * 100)
         : 0,
     },
   ] : [];
+
+  // Filter unique chains from Chain enum
+  const uniqueChains = [Chain.ETHEREUM, Chain.POLYGON, Chain.ARBITRUM, Chain.SOLANA];
 
   return (
     <div className="space-y-8">
@@ -103,7 +108,7 @@ export default function Compare() {
                   Filter by Chains (Optional)
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {Object.values(Chain).map((chain) => (
+                  {uniqueChains.map((chain) => (
                     <Button
                       key={chain}
                       variant={selectedChains.includes(chain) ? 'primary' : 'secondary'}
@@ -296,6 +301,3 @@ export default function Compare() {
     </div>
   );
 }
-
-import { ChainBadge, ProtocolBadge } from '@components/ui/Badge';
-import { formatCompactUSD } from '@utils/formatters';

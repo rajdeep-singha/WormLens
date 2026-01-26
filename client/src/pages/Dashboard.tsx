@@ -6,7 +6,7 @@ import { useMarketOverview, useMarketRates } from '@hooks/useMarketData';
 import { Card, StatsCard } from '@components/ui/Card';
 import { GradientText } from '@components/ui/GradientText';
 import { LoadingSpinner, EmptyState, Skeleton } from '@components/ui/GradientText';
-import { GlobalMarketStats } from '@components/dashboard/GlobalMarketStats';
+import { GlobalMarketStats } from '@components/dashboard/GlobalMarketOverview';
 import { TopRatesTable } from '@components/dashboard/TopRatesTable';
 import { ChainLiquidityChart } from '@components/dashboard/ChainLiquidityChart';
 import { ProtocolTVLChart } from '@components/dashboard/ProtocolTVLChart';

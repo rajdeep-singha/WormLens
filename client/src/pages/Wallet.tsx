@@ -13,7 +13,7 @@ import { PositionsSummary } from '@components/wallet/PositionsSummary';
 import { PositionsTable } from '@components/wallet/PositionsTable';
 import { RiskIndicator } from '@components/wallet/RiskIndicator';
 import { ChainBreakdown } from '@components/wallet/ChainBreakdown';
-import { validateWalletAddress } from '@types';
+import { validateWalletAddress } from '@/types';
 
 const EXAMPLE_ADDRESSES = [
   {

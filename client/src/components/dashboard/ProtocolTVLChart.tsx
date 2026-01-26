@@ -1,5 +1,5 @@
 // src/components/dashboard/ProtocolTVLChart.tsx
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell } from 'recharts';
 import { Protocol, PROTOCOL_INFO } from '@types';
 import { formatCompactUSD } from '@utils/formatters';
 
