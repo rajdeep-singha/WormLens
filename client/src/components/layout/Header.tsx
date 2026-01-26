@@ -8,7 +8,7 @@ import { Button } from '@components/ui/Button';
 import clsx from 'clsx';
 
 const navLinks = [
-  { path: '/', label: 'Dashboard' },
+  { path: '/dashboard', label: 'Dashboard' },
   { path: '/wallet', label: 'Wallet' },
   { path: '/compare', label: 'Compare' },
 ];
