@@ -12,17 +12,32 @@ import { lendingRoutes } from './routes/lending.routes';
 
 const app: Express = express();
 const PORT = process.env.PORT || 3001;
-
+const allowedOrigins = [
+  "http://localhost:3001",           // local dev
+  "https://worm-lens.vercel.app"     // production frontend
+];
 //Middlewares
 
 //security
 app.use(cors());
 
 //CORS
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://worm-lens.vercel.app',
-  credentials: true,
-}));
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 // Body parsing
 app.use(express.json());
