@@ -20,7 +20,7 @@ app.use(cors());
 
 //CORS
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL || 'https://worm-lens.vercel.app',
   credentials: true,
 }));
 
