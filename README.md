@@ -159,7 +159,7 @@ When filing an issue, include:
 
 ## License
 
-This project is intended to be open source. Add a license file (for example, `LICENSE` with the MIT License) before publishing or accepting external contributions.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Troubleshooting
 
