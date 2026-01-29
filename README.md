@@ -49,9 +49,9 @@ FRONTEND_URL=http://localhost:3000
 SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
 ETHEREUM_RPC_URL=<your-ethereum-rpc-url>
 
-# Optional (Wormhole Query API; contract calls in this repo primarily use RPCs)
+#  (Wormhole Query API; contract calls in this repo primarily use RPCs)
 WORMHOLE_ENVIRONMENT=mainnet
-WORMHOLE_API_KEY=<optional>
+WORMHOLE_API_KEY=YOUR_API_Key
 ```
 
 ### Why you might only see Solana data
@@ -111,11 +111,6 @@ curl "http://localhost:3001/api/v1/liquidity?chain=solana&protocol=solend"
 curl "http://localhost:3001/api/v1/rates/best?type=supply&asset=USDC"
 ```
 
-## Screenshots
-
-- App UI: `https://github.com/user-attachments/assets/2f3ecbdf-e8a2-478a-8ee9-aad093b1a994`
-- `/api/v1/rates` sample: `https://github.com/user-attachments/assets/30d79677-71f8-48cd-8a59-6d8d2897097f`
-- `/api/v1/rates` sample (alternate): `https://github.com/user-attachments/assets/208ca4f7-7f95-4ef2-8c45-034746423b60`
 
 ## Contributing
 
