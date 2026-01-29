@@ -1,4 +1,4 @@
-# WormLens
+<h1 div align="center">WormLens</h1>
 
 WormLens is a multichain lending analytics application. It exposes a REST API for aggregated lending/borrowing rates, liquidity, utilization, and user positions across supported protocols and chains.
 
