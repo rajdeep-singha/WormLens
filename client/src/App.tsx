@@ -1,4 +1,5 @@
 // src/App.tsx
+"use client";
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Header } from '@components/layout/Header';
@@ -7,6 +8,8 @@ import Home from '@pages/Home';
 import Dashboard from '@pages/Dashboard';
 import Wallet from '@pages/Wallet';
 import Compare from '@pages/Compare';
+import { TamboProvider } from "@tambo-ai/react";
+import { MessageThreadCollapsible } from "@components/tambo/message-thread-collapsible";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -18,7 +21,10 @@ const queryClient = new QueryClient({
     },
   },
 });
-
+const apiKey = import.meta.env.VITE_TAMBO_API_KEY;
+if (!apiKey) {
+  throw new Error('Missing Tambo API key!');
+}
 function AppLayout() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -45,11 +51,18 @@ function AppLayout() {
 
 function App() {
   return (
+    
+      
+   <TamboProvider apiKey={import.meta.env.VITE_TAMBO_API_KEY!}>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AppLayout />
+         <MessageThreadCollapsible />
+        {/* <MessageThreadCollapsible /> */}
       </BrowserRouter>
     </QueryClientProvider>
+    </TamboProvider>
+     
   );
 }
 
