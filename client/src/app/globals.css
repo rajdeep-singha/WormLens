@@ -71,8 +71,8 @@ body {
     /* Tambo Specific Variables needed for tambo components */
     --radius: 0.5rem;
     --container: 210 29% 97%;
-    --backdrop: 210 88% 14% / 0.25;
-    --muted-backdrop: 210 88% 14% / 0.1;
+--backdrop: 210 88% 14%;  
+--muted-backdrop: 210 88% 14%;
     --panel-left-width: 500px;
     --panel-right-width: 500px;
     --sidebar-width: 3rem;
@@ -211,4 +211,16 @@ Animated gradient for thinking text, creates a shimmering effect that moves acro
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: thinking-gradient 2s linear infinite;
+}
+/* Force all background semantic colors to be fully opaque */
+.bg-background\/80,
+.bg-background\/70,
+.bg-background\/60,
+.bg-background\/50 {
+  background-color: hsl(var(--background)) !important;
+}
+
+.bg-muted\/50,
+.bg-muted\/40 {
+  background-color: hsl(var(--muted)) !important;
 }

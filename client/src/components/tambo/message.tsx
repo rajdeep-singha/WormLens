@@ -211,7 +211,7 @@ const MessageContent = React.forwardRef<HTMLDivElement, MessageContentProps>(
       <MessageBase.Content
         ref={ref}
         className={cn(
-          "relative block rounded-3xl px-4 py-2 text-[15px] leading-relaxed transition-all duration-200 font-medium max-w-full [&_p]:py-1 [&_li]:list-item",
+          "w-full p-2 bg-transparent border border-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500",
           className,
         )}
         content={content}
@@ -620,7 +620,7 @@ function ToolResultResource({ resource, index }: ToolResultResourceProps) {
     return (
       <div className="whitespace-pre-wrap">
         {resource.name && (
-          <span className="font-medium text-muted-foreground">
+          <span className="p-4 bg-card border-t border-border font-medium">
             {resource.name}:{" "}
           </span>
         )}
